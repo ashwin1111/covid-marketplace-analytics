@@ -129,12 +129,13 @@ button {
 */
 /* blockquote */
 blockquote{
-    padding: 60px;
+    padding: 15px;
     position: relative;
-    background: #853BFA;
+    /* background: #853BFA; */
+    background: #007bff;
 }
 blockquote:before{
-    content: '\f10d';
+    content: '';
     font-family: fontawesome;
     color: #fff;
     font-size: 32px;
