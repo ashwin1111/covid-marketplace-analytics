@@ -4,60 +4,41 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Market Updates</title>
+    <title>Market Analytics|COVID-19|Pollachi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="assets/images/covid19-icon.png">
+    <link rel="shortcut icon" type="image/png" href="assets/images/analytics.png">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/themify-icons.css">
     <link rel="stylesheet" href="assets/css/metisMenu.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/css/slicknav.min.css">
-    <!-- amchart css -->
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-    <!-- others css -->
     <link rel="stylesheet" href="assets/css/typography.css">
     <link rel="stylesheet" href="assets/css/default-css.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-    
-    <!-- modernizr css -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
     <a id="back2Top" title="Back to top" href="#">&#65515;</a>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <!-- preloader area start -->
     <div id="preloader">
         <div class="loader"></div>
     </div>
     <!-- preloader area end -->
     <!-- page container area start -->
     <div class="page-container">
-        
         <!-- main content area start -->
         <div class="main-content">
             <!-- header area start -->
             <div class="header-area">
                 <div class="row align-items-center">
                     <!-- nav and search button -->
-                    <div class="col-md-6 col-sm-8 clearfix">
-                       
-                        <h4 class="header-title mb-0">Market Updates</h4>
-                       
-                       
-                       
+                    <div class="col-md-12 col-sm-8 clearfix">
+                        <h4 class="header-title mb-0" style="text-align: center;">Shops and People Engagement Analytics During COVID-19, Pollachi </h4>
                     </div>
-
                     
-                    <!-- profile info & task notification -->
-                    <div class="col-md-6 col-sm-4 clearfix">
-                       
-                                            </div>
-
                 </div>
             </div>
             <!-- header area end -->
@@ -66,27 +47,52 @@
             <!-- page title area end -->
             <div class="main-content-inner" style="padding: 10px;">
                 <!-- sales report area start -->
-                <!-- <div class="col-12" >
+                <div class="col-12" >
                     <div class="card1">
                         
-                           <h4 style="color: #fff;" ><div id="rotate" style="padding: 10px; "><div>Maintain social distancing</div>
-                            <div>Avoid touching eyes, nose and mouth</div>
-                            <div>Practice respiratory hygiene</div><div> Stay Home &#127969; Stay Safe &#10084;&#65039;</div></div></h4>
-                            
-                           
-                           
-                            
-                        
+                           <h4 style="color: #fff;" >
+                                <div id="rotate" style="padding: 10px; ">
+                                    <div>Maintain social distancing</div>
+                                    <div>Avoid touching eyes, nose and mouth</div>
+                                    <div>Practice respiratory hygiene</div>
+                                    <div> Go out only for essential things</div>
+                                    <div> Stay Home &#127969; Stay Safe &#10084;&#65039;</div>
+                                </div>
+                            </h4>                        
                     </div>
-                </div> -->
+                </div>
 
-                    
-               
-                <div class="sales-report-area mt-5 mb-5">
-                    
-                    
-                   
-                    
+                
+                <!-- overview area start -->
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 mt-5">
+                        <div class="card h-full">
+                            <div class="card-body">
+                                <h4 class="header-title mb-0 mt-3">Total Active Shops Today: <a style="color: #007bff">45</a></h4>
+                                <h4 class="header-title mb-0 mt-5">Slot Start Time: <a style="color: #007bff">06:00 AM</a></h4>
+                                <h4 class="header-title mb-0 mt-5">Slot End Time: <a style="color: #007bff">12:30PM</a> </h4>
+                                <h4 class="header-title mb-0 mt-5">Book your slot by clicking<a href="https://app.covid19pollachi.xyz/book-marketplace" target="_blank" > here</a>.</br><br>We shall overcome! Until then keep following the guidelines <a style="color: #007bff">#SocialDistance</a></h4>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h4 class="header-title mb-2">People Engagement</h4>
+                                    <h4></h4>
+                                </div>
+                                <!-- <div id="verview-shart"></div> -->
+                                <canvas id="mixed-chart" width="100%" height="30%"></canvas>
+                                <i size="">No of Bookings <a style="color: #ebcf92; font-weight: 900;">---</a></i></br>
+                                <i>No of People Visited <a style="color: #9adfaa; font-weight: 900;">---</a></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                
                 <div class="row">
                     <!-- table primary start -->
@@ -97,16 +103,14 @@
                                 <div class="single-table">
                                     <div class="table-responsive">
                                         <table class="table text-center">
-                                            <thead class="text-uppercase bg-primary">
+                                            <thead class="text bg-primary">
                                                 <tr class="text-white">
-                                                    <th scope="col">Market Name</th>
+                                                    <th scope="col">Shop Name</th>
                                                     <th scope="col">Address</th>
-                                                    <th scope="col">People in shop</th>
-                                                    <th scope="col">Total Visits today</th>
-                                                    <th scope="col">People Per Timeslot</th>
-                                                    <th scope="col">Time Slot</th>
-                                                    
-                                                    
+                                                    <th scope="col">No. of People Purchasing At Present</th>
+                                                    <th scope="col">Total No. of People Visited Today</th>
+                                                    <th scope="col">People Allowed Per Timeslot</th>
+                                                    <th scope="col">Time Slot Details</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -121,43 +125,34 @@
                 </div>    
                 <!-- overview area end -->
 
-
-                
-                
                 
         <!-- footer area start-->
-        <footer>
+        
+            <footer>
+                <div class="footer-area" style="padding: 1%;">
+                    
+                    <p>For Quries Contact <a href="#" style="color: #fff">Helpline Number</a>.</p>
+                    
+                    
+                </div>
+            
            
         </footer>
         <!-- footer area end-->
     </div>
     <!-- page container area end -->
     
-    <!-- jquery latest version -->
+    
     <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
-    <!-- bootstrap 4 js -->
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/owl.carousel.min.js"></script>
     <script src="assets/js/metisMenu.min.js"></script>
     <script src="assets/js/jquery.slimscroll.min.js"></script>
-    <script src="assets/js/jquery.slicknav.min.js"></script>
-
-    <!-- start chart js -->
+    <script src="assets/js/jquery.slicknav.min.js"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <!-- start highcharts js -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <!-- start zingchart js -->
-    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
-    <script>
-    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
-    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
-    </script>
-    <!-- all line chart activation -->
     <script src="assets/js/line-chart.js"></script>
-    <!-- all pie chart -->
-    
-    <!-- others plugins -->
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/scripts.js"></script>
 </body>

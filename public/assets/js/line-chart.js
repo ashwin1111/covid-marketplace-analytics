@@ -12,6 +12,17 @@ $('.tbl-accordion-nested').each(function(){
 /*--------------  coin_sales1 start ------------*/
 
 
+var date = new Date();
+    var month = date.getMonth()+1;
+    var monthString;
+    if (month < 10) {
+      monthString = '0' + month.toString();
+    } else {
+      monthString = month.toString();
+    }
+var dateString = date.getFullYear().toString() + '-' + monthString  + '-' + date.getDate().toString();
+// console.log(dateString);
+
 
 
 
@@ -20,24 +31,48 @@ $('.tbl-accordion-nested').each(function(){
 
  
 
-function show_modal(time_slots_arr){
-    console.log(time_slots_arr);
+function show_modal(market_id){
 
-    if (time_slots_arr.length>0){
-        var k= '<p>';
-            for (j=0;j<time_slots_arr.length;j++){
-                k+=time_slots_arr[j];
-                k+='<br>';
-            }
-            k+='</p>';
-            document.getElementById('slots').innerHTML = k;
-            break;
-    }
-    else{
-        document.getElementById('slots').innerHTML = "No Timeslots assigned";
-    }
-}
+  
+  document.getElementById("modal_data").innerHTML = "Loading...";
+    fetch('https://covid19-pollachi.herokuapp.com/analytics/get_date_counts?on_date='+dateString+'', {mode: 'cors'})
+      .then(function(response) {
+      return response.text();
+    })
+    .then(function(text) {
+    var date_wise_data = JSON.parse(text).DateWise_data;
+    // console.log(date_wise_data[0]['market_place_id']);
     
+    for(i=0;i<date_wise_data.length;i++){
+      
+     
+      
+      if(date_wise_data[i].market_place_id==market_id){
+        
+        var k= '<p>';
+        for(j=0;j<date_wise_data[i]['time_slot_data'].length;j++){
+          k+=date_wise_data[i]['time_slot_data'][j]['time_slot_range']+" - "+date_wise_data[i]['time_slot_data'][j]['remaining_booking_count'] ;
+          k+='<br>';
+        }
+        k+='</p>';
+        document.getElementById("modal_data").innerHTML = k;
+        break;
+
+        
+      }
+      else{
+        
+        document.getElementById("modal_data").innerHTML = "No Data Available";
+      }
+    }
+
+   
+
+})
+.catch(function(error) {
+  console.log('Request failed', error)
+});
+}
     
 
   
@@ -48,21 +83,15 @@ function show_modal(time_slots_arr){
 
 
 
-// var today = new Date();
-// var curr_date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-// console.log(curr_date);
 
-let today = new Date().toISOString().slice(0, 10)
-
-console.log(today)
 
      
-fetch('https://covid19-pollachi.herokuapp.com/analytics/get_date_counts?on_date='+today+'', {mode: 'cors'})
+fetch('https://covid19-pollachi.herokuapp.com/analytics/get_date_counts?on_date='+dateString+'', {mode: 'cors'})
   .then(function(response) {
     return response.text();
   })
   .then(function(text) {
-    console.log('Request successful', text);
+    // console.log('Request successful', text);
     
     
     var date_wise_data = JSON.parse(text).DateWise_data;
@@ -74,13 +103,12 @@ fetch('https://covid19-pollachi.herokuapp.com/analytics/get_date_counts?on_date=
                     
                     var k = '<tbody>'
                     for(i = 0;i < date_wise_data.length; i++){
-                        // var temp=s_state[i].replace(/ +/g, "");
-                        console.log(i);
+                        
                         var time_slots=[]
                         for (m=0;m< date_wise_data[i]['time_slot_data'].length;m++){
                             time_slots.push(date_wise_data[i]['time_slot_data'][m]['time_slot_range'])
                         }
-                        console.log(time_slots);
+                        
 
                         k+= '<tr>';
                         k+= '<td>' + date_wise_data[i]['market_palce_name'] + '</td>';
@@ -89,18 +117,17 @@ fetch('https://covid19-pollachi.herokuapp.com/analytics/get_date_counts?on_date=
                         k+= '<td>' + date_wise_data[i]['visited_people'] + '</td>';
                         k+= '<td>' + date_wise_data[i]['customer_max_count'] + '</td>';
                         
-                        k+='<td><button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleLongModalLong2'+i+'" >View</button></td>';
-                        k+='<div class="modal fade" id="exampleLongModalLong2'+i+'">';
+                        k+='<td><button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleLongModalLong2" onclick=show_modal("'+date_wise_data[i]['market_place_id']+'")>View</button></td>';
+                        k+='<div class="modal fade" id="exampleLongModalLong2">';
                         k+='            <div class="modal-dialog">';
                         k+='                <div class="modal-content">';
                         k+='                    <div class="modal-header">';
-                        k+='                        <h5 class="modal-title" style=" color: #007bff; ">Time Slots</h5>';
+                        k+='                        <h5 class="modal-title" style=" color: #007bff; ">Time Slots And Their Vacancy Count</h5>';
                         k+='                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>';
                         k+='                    </div>';
                         k+='                    <div class="modal-body">';
-                        
-            
-                        k+='                        <p >'+time_slots.join('</br>')+'</p>';
+                       
+                        k+='                        <p id="modal_data"></p>';
 
                         k+='                    </div>';
                         k+='                    <div class="modal-footer">';
@@ -114,20 +141,11 @@ fetch('https://covid19-pollachi.herokuapp.com/analytics/get_date_counts?on_date=
 
 
 
-
-                        
-                       
-
-
-
-
                     }                   
                         
                     
                     k+='</tbody>';
                     document.getElementById('tableData').innerHTML = k;
-                
-                    
 
 
                         })
@@ -143,6 +161,74 @@ fetch('https://covid19-pollachi.herokuapp.com/analytics/get_date_counts?on_date=
 
 
 
+fetch('https://covid19-pollachi.herokuapp.com/analytics/get_daily_counts?on_date='+dateString+'', {mode: 'cors'})
+  .then(function(response) {
+    return response.text();
+  })
+  .then(function(text) {
+    // console.log('Request successful', text);
+    
+    var daily_data = JSON.parse(text).Daily_data;
+    var date_arr=[];
+    var daily_booked=[];
+    var daily_visited=[];
+    
+    
+
+    daily_data.forEach(element => {
+        // console.log(';loop', element.date);
+        date_arr.push(element.on_date);
+        daily_booked.push(element.booked_count);
+        daily_visited.push(element.visited_count);
+  
+        
 
 
+    });
 
+
+new Chart(document.getElementById("mixed-chart"), {
+  type: 'bar',
+  data: {
+    labels: date_arr,
+    datasets: [
+      // {
+      //   label: "Booked",
+      //   type: "line",
+      //   borderColor: "#ebcf92",
+      //   data: daily_booked,
+      //   fill: false
+      // }, {
+      //   label: "Visited",
+      //   type: "line",
+      //   borderColor: "#9adfaa",
+      //   data: daily_visited,
+      //   fill: false
+      // },
+       {
+        label: "Booked",
+        type: "bar",
+        backgroundColor: "#ebcf92",
+        data: daily_booked,
+      }, {
+        label: "Visited",
+        type: "bar",
+        backgroundColor: "#9adfaa",
+        backgroundColorHover: "#9adfaa",
+        data: daily_visited,
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: false,
+      text: 'Population growth (millions): Europe & Africa'
+    },
+    legend: { display: false }
+  }
+});
+})
+.catch(function(error) {
+  console.log('Request failed', error)
+});
+      

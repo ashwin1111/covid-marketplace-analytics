@@ -1,29 +1,5 @@
 
 
-// var xmlhttp = new XMLHttpRequest();
-// xmlhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//     var myObj = JSON.parse(this.responseText);
-//     var x = document.getElementsByTagName("tr")[0].getAttribute("val");
-//     console.log(x);
-//     document.getElementById("modal_title_state").innerHTML =x;
-    
-    
-
-//     // document.getElementById("modal_title_state").innerHTML = myObj.statewise[0].confirmed;
-//     }
-// };
-// xmlhttp.open("GET", "https://api.covid19india.org/data.json", true);
-// xmlhttp.send();
-
-
-
-
-
-
-
-
-
 
 $(window).scroll(function() {
     var height = $(window).scrollTop();
