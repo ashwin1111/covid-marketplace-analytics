@@ -189,8 +189,10 @@ fetch('https://covid19-pollachi.herokuapp.com/analytics/get_daily_counts?on_date
 
 new Chart(document.getElementById("mixed-chart"), {
   type: 'bar',
+  
   data: {
     labels: date_arr,
+    
     datasets: [
       // {
       //   label: "Booked",
@@ -220,12 +222,22 @@ new Chart(document.getElementById("mixed-chart"), {
     ]
   },
   options: {
+    scales: {
+      yAxes: [{
+          ticks: {
+              suggestedMin: 0
+              
+          }
+      }]
+  },
     title: {
       display: false,
       text: 'Population growth (millions): Europe & Africa'
     },
     legend: { display: false }
   }
+ 
+  
 });
 })
 .catch(function(error) {
