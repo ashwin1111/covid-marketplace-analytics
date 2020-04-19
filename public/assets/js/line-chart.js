@@ -11,6 +11,10 @@ $('.tbl-accordion-nested').each(function(){
 
 /*--------------  coin_sales1 start ------------*/
 
+// var longDateStr = moment('02/12/2013', 'M/D/Y').format('MMM D');
+// console.log(longDateStr);
+
+
 
 var date = new Date();
     var month = date.getMonth()+1;
@@ -186,12 +190,23 @@ fetch('https://covid19-pollachi.herokuapp.com/analytics/get_daily_counts?on_date
 
     });
 
+    //  console.log(date_arr);
+     new_date_arr=[];
+     for (t=0;t<date_arr.length;t++){
+      //  console.log(date_arr[t]);
+      new_date_arr.push(moment(date_arr[t], 'Y-M-D').format('MMM D'))
+     }
+     
+    
+    // console.log(new_date_arr);
+  
+
 
 new Chart(document.getElementById("mixed-chart"), {
   type: 'bar',
   
   data: {
-    labels: date_arr,
+    labels: new_date_arr,
     
     datasets: [
       // {
@@ -228,7 +243,13 @@ new Chart(document.getElementById("mixed-chart"), {
               suggestedMin: 0
               
           }
-      }]
+          
+      }],
+      xAxes: [{
+        ticks: {
+        autoSkip: false
+        }
+        }]
   },
     title: {
       display: false,
