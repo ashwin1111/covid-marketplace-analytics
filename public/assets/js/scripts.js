@@ -72,9 +72,10 @@ $(document).ready(function() {
 
     var preloader = $('#preloader');
     $(window).on('load', function() {
+        $('#overlay').fadeOut();
         setTimeout(function() {
             preloader.fadeOut('slow', function() { $(this).remove(); });
-        }, 300)
+        }, 1000)
     });
 
     /*================================
