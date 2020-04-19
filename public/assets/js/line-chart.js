@@ -78,7 +78,20 @@ function show_modal(market_id){
 });
 }
     
-
+fetch('https://covid19-pollachi.herokuapp.com/analytics/get_time_slots_on_date?on_date='+dateString+'', {mode: 'cors'})
+  .then(function(response) {
+    return response.text();
+  })
+  .then(function(text) {
+    // console.log('Request successful', text);
+    var date_wise_count_data = JSON.parse(text).DateWise_count_data;
+    document.getElementById('v1').innerHTML = (date_wise_count_data[0]['market_count']);
+    document.getElementById('v2').innerHTML = (date_wise_count_data[0]['first_time_slot'].split('to')[0].trim());
+    document.getElementById('v3').innerHTML = (date_wise_count_data[0]['last_time_slot'].split('to')[1].trim());
+  })
+  .catch(function(error) {
+    log('Request failed', error)
+  });
   
 
 
