@@ -219,33 +219,33 @@ new Chart(document.getElementById("mixed-chart"), {
   type: 'bar',
   
   data: {
-    labels: new_date_arr,
+    labels: new_date_arr.slice(1).slice(-10),
     
     datasets: [
-      // {
-      //   label: "Booked",
-      //   type: "line",
-      //   borderColor: "#ebcf92",
-      //   data: daily_booked,
-      //   fill: false
-      // }, {
-      //   label: "Visited",
-      //   type: "line",
-      //   borderColor: "#9adfaa",
-      //   data: daily_visited,
-      //   fill: false
-      // },
+       {
+         label: "Booked",
+         type: "line",
+         borderColor: "#ebcf92",
+         data: daily_booked.slice(1).slice(-10),
+         fill: false
+       }, {
+         label: "Visited",
+         type: "line",
+         borderColor: "#9adfaa",
+         data: daily_visited.slice(1).slice(-10),
+         fill: false
+       },
        {
         label: "Booked",
         type: "bar",
         backgroundColor: "#ebcf92",
-        data: daily_booked,
+        data: daily_booked.slice(1).slice(-10),
       }, {
         label: "Visited",
         type: "bar",
         backgroundColor: "#9adfaa",
         backgroundColorHover: "#9adfaa",
-        data: daily_visited,
+        data: daily_visited.slice(1).slice(-10),
       }
     ]
   },
