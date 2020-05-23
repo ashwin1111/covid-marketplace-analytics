@@ -39,7 +39,7 @@ function show_modal(market_id){
 
   
   document.getElementById("modal_data").innerHTML = "Loading...";
-    fetch('https://covid19-pollachi.herokuapp.com/analytics/get_date_counts?on_date='+dateString+'', {mode: 'cors'})
+    fetch('https://covid19-marketplace.herokuapp.com/analytics/get_date_counts?on_date='+dateString+'', {mode: 'cors'})
       .then(function(response) {
       return response.text();
     })
@@ -78,7 +78,7 @@ function show_modal(market_id){
 });
 }
     
-fetch('https://covid19-pollachi.herokuapp.com/analytics/get_time_slots_on_date?on_date='+dateString+'', {mode: 'cors'})
+fetch('https://covid19-marketplace.herokuapp.com/analytics/get_time_slots_on_date?on_date='+dateString+'', {mode: 'cors'})
   .then(function(response) {
     return response.text();
   })
@@ -103,7 +103,7 @@ fetch('https://covid19-pollachi.herokuapp.com/analytics/get_time_slots_on_date?o
 
 
      
-fetch('https://covid19-pollachi.herokuapp.com/analytics/get_date_counts?on_date='+dateString+'', {mode: 'cors'})
+fetch('https://covid19-marketplace.herokuapp.com/analytics/get_date_counts?on_date='+dateString+'', {mode: 'cors'})
   .then(function(response) {
     return response.text();
   })
@@ -178,7 +178,7 @@ fetch('https://covid19-pollachi.herokuapp.com/analytics/get_date_counts?on_date=
 
 
 
-fetch('https://covid19-pollachi.herokuapp.com/analytics/get_daily_counts?on_date='+dateString+'', {mode: 'cors'})
+fetch('https://covid19-marketplace.herokuapp.com/analytics/get_daily_counts?on_date='+dateString+'', {mode: 'cors'})
   .then(function(response) {
     return response.text();
   })

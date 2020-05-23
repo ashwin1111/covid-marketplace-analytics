@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "public",
+    "site": "marketplace-dashboard",
     "ignore": [
       "firebase.json",
       "**/.*",
